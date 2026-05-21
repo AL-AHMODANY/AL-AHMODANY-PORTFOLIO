@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AL-AHMODANY - Frontend Developer CV</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Arial', sans-serif; line-height: 1.6; color: #333; background: #fff; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; margin-bottom: 40px; border-bottom: 3px solid #00FF94; padding-bottom: 20px; }
+        .name { font-size: 2.5em; font-weight: bold; color: #0A0A0F; margin-bottom: 10px; }
+        .title { font-size: 1.2em; color: #00FF94; margin-bottom: 15px; }
+        .contact { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .contact span { font-size: 0.9em; color: #666; }
+        .section { margin-bottom: 30px; }
+        .section-title { font-size: 1.4em; font-weight: bold; color: #0A0A0F; margin-bottom: 15px; border-left: 4px solid #00FF94; padding-left: 10px; }
+        .summary { font-size: 1em; color: #555; line-height: 1.8; }
+        .experience-item { margin-bottom: 20px; }
+        .job-title { font-weight: bold; color: #0A0A0F; }
+        .company { color: #00FF94; font-weight: 500; }
+        .period { color: #666; font-size: 0.9em; }
+        .job-description { margin-top: 8px; color: #555; }
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .skill-category { background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #00FF94; }
+        .skill-category h4 { color: #0A0A0F; margin-bottom: 8px; }
+        .skill-list { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill-tag { background: #00FF94; color: #0A0A0F; padding: 4px 8px; border-radius: 4px; font-size: 0.8em; font-weight: 500; }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .project-card { border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px; }
+        .project-title { font-weight: bold; color: #0A0A0F; margin-bottom: 5px; }
+        .project-tech { color: #00FF94; font-size: 0.9em; margin-bottom: 8px; }
+        .project-desc { color: #555; font-size: 0.9em; }
+        @media print { body { font-size: 12px; } .container { padding: 20px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1 class="name">AL-AHMODANY</h1>
+            <p class="title">Frontend Developer • Vue.js Specialist • UI Engineer</p>
+            <div class="contact">
+                <span>📧 contact@al-ahmodany.dev</span>
+                <span>🌐 al-ahmodany.dev</span>
+                <span>💻 github.com/AL-AHMODANY</span>
+                <span>🟢 Available for work</span>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Professional Summary</h2>
+            <p class="summary">
+                Frontend developer with hands-on experience building Vue.js interfaces for live products across e-commerce, 
+                community platforms, dashboards, and utility applications. Strong focus on maintainable component architecture, 
+                responsive design, user experience quality, and shipping clean interfaces that feel finished in production.
+            </p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-item">
+                <div class="job-title">Frontend Developer</div>
+                <div class="company">Freelance - Remote</div>
+                <div class="period">2023 - Present</div>
+                <div class="job-description">
+                    • Built and shipped live Vue.js products for client-facing use cases across multiple industries<br>
+                    • Created responsive interfaces for e-commerce, dashboards, and community platforms with clean component structure<br>
+                    • Integrated frontend applications with Firebase, routing, and practical API-driven UI flows<br>
+                    • Focused on performance, readability, and polished interaction details throughout delivery
+                </div>
+            </div>
+            <div class="experience-item">
+                <div class="job-title">Frontend Builder</div>
+                <div class="company">Independent Learning and Product Practice</div>
+                <div class="period">2021 - 2023</div>
+                <div class="job-description">
+                    • Developed hands-on expertise through personal products, iterative redesigns, and real interface problem solving<br>
+                    • Built confidence in JavaScript, Vue, layout systems, and frontend architecture through constant project work<br>
+                    • Studied modern frontend workflows through official docs, structured courses, and repeated practice
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Frontend Frameworks</h4>
+                    <div class="skill-list">
+                        <span class="skill-tag">Vue.js 3</span>
+                        <span class="skill-tag">Vue Router</span>
+                        <span class="skill-tag">Pinia</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Languages</h4>
+                    <div class="skill-list">
+                        <span class="skill-tag">JavaScript ES6+</span>
+                        <span class="skill-tag">HTML5</span>
+                        <span class="skill-tag">CSS3</span>
+                        <span class="skill-tag">TypeScript</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Styling & UI</h4>
+                    <div class="skill-list">
+                        <span class="skill-tag">Tailwind CSS</span>
+                        <span class="skill-tag">Responsive Design</span>
+                        <span class="skill-tag">CSS Grid/Flexbox</span>
+                        <span class="skill-tag">Figma</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h4>Tools & Backend</h4>
+                    <div class="skill-list">
+                        <span class="skill-tag">Vite</span>
+                        <span class="skill-tag">Git/GitHub</span>
+                        <span class="skill-tag">Firebase</span>
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Vercel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Key Projects</h2>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-title">Nour Zamon E-Commerce</div>
+                    <div class="project-tech">Vue 3 • Pinia • Tailwind CSS</div>
+                    <div class="project-desc">Full-featured e-commerce platform with product catalog, cart management, and checkout flow.</div>
+                </div>
+                <div class="project-card">
+                    <div class="project-title">Morkaznourzaman Platform</div>
+                    <div class="project-tech">Vue 3 • Firebase • JavaScript</div>
+                    <div class="project-desc">Islamic center platform with prayer times, event management, and community services.</div>
+                </div>
+                <div class="project-card">
+                    <div class="project-title">Weather Application</div>
+                    <div class="project-tech">Vue 3 • OpenWeather API</div>
+                    <div class="project-desc">Real-time weather app with animated visualizations and 7-day forecasts.</div>
+                </div>
+                <div class="project-card">
+                    <div class="project-title">Larkon Productivity App</div>
+                    <div class="project-tech">Vue 3 • Pinia • Firebase</div>
+                    <div class="project-desc">Task management application with team collaboration and clean interface.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Education & Learning</h2>
+            <div class="experience-item">
+                <div class="job-title">Self-Directed Frontend Study</div>
+                <div class="company">MDN, Vue Docs, freeCodeCamp, Udemy</div>
+                <div class="period">2021 - Present</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Languages</h2>
+            <p class="summary">
+                <strong>Arabic:</strong> Native • <strong>English:</strong> Fluent
+            </p>
+        </div>
+    </div>
+</body>
+</html>

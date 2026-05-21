@@ -1,0 +1,18 @@
+export const skills = [
+  { name: 'React', icon: '⚛️', level: 92, category: 'Framework' },
+  { name: 'JavaScript', icon: '🟨', level: 90, category: 'Language' },
+  { name: 'Tailwind CSS', icon: '🎨', level: 95, category: 'Styling' },
+  { name: 'HTML5', icon: '🧱', level: 98, category: 'Language' },
+  { name: 'CSS3', icon: '💎', level: 93, category: 'Styling' },
+  { name: 'React Router', icon: '🧭', level: 88, category: 'Framework' },
+  { name: 'Framer Motion', icon: '🎬', level: 85, category: 'Framework' },
+  { name: 'Firebase', icon: '🔥', level: 80, category: 'Backend' },
+  { name: 'Git/GitHub', icon: '📚', level: 87, category: 'Tools' },
+  { name: 'Figma', icon: '🎯', level: 75, category: 'Design' },
+  { name: 'REST APIs', icon: '🔌', level: 85, category: 'Backend' },
+  { name: 'Responsive Design', icon: '📱', level: 95, category: 'Design' },
+  { name: 'Vite', icon: '⚡', level: 88, category: 'Tools' },
+  { name: 'TypeScript', icon: '🔷', level: 70, category: 'Language' },
+  { name: 'Node.js', icon: '🟢', level: 65, category: 'Backend' },
+  { name: 'UI/UX Design', icon: '✨', level: 82, category: 'Design' },
+]
