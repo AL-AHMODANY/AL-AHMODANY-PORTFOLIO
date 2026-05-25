@@ -7,6 +7,18 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     sourcemap: false,
-    minify: 'esbuild'
+    minify: 'esbuild',
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          router: ['react-router-dom'],
+          motion: ['framer-motion']
+        }
+      }
+    }
+  },
+  esbuild: {
+    logOverride: { 'this-is-undefined-in-esm': 'silent' }
   }
 })
