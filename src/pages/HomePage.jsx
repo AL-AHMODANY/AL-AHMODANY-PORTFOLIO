@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import {
   Folder,
   Send,
@@ -18,44 +18,51 @@ import {
   Users,
   Award,
   Phone,
-} from 'lucide-react';
-import ProjectCard from '../components/ui/ProjectCard';
-import WhatsAppIcon from '../components/ui/WhatsAppIcon';
-import { projects } from '../data/projects';
-import { skills as allSkills } from '../data/skills';
+} from "lucide-react";
+import ProjectCard from "../components/ui/ProjectCard";
+import WhatsAppIcon from "../components/ui/WhatsAppIcon";
+import { projects } from "../data/projects";
+import { skills as allSkills } from "../data/skills";
 
 const HomePage = () => {
-  const [currentRole, setCurrentRole] = useState('');
+  const [currentRole, setCurrentRole] = useState("");
   const [roleIndex, setRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
 
-  const roles = ['Frontend Developer', 'React Developer', 'UI Engineer', 'Web Developer'];
-  const specialties = ['React apps', 'Tailwind UI', 'Firebase integration', 'E-commerce flows', 'Arabic and English UX'];
+  const roles = [
+    "Frontend Developer",
+    "React Developer",
+    "UI Engineer",
+    "Web Developer",
+  ];
+  const specialties = [
+    "React apps",
+    "Tailwind UI",
+    "Firebase integration",
+    "E-commerce flows",
+    "Arabic and English UX",
+  ];
 
   // Enhanced typing animation effect
   useEffect(() => {
     let timeoutId;
-    
+    const currentWord = roles[roleIndex];
+    const typeSpeed = 100 + Math.random() * 50;
+    const deleteSpeed = 50 + Math.random() * 30;
     const type = () => {
-      const currentWord = roles[roleIndex];
-      
       if (!isDeleting) {
-        // Typing forward
-        if (currentRole.length < currentWord.length) {
+        if (currentRole !== currentWord) {
           setCurrentRole(currentWord.slice(0, currentRole.length + 1));
-          timeoutId = setTimeout(type, 100 + Math.random() * 50); // Variable speed for natural feel
+          timeoutId = setTimeout(type, typeSpeed);
         } else {
-          // Word complete, pause then start deleting
           timeoutId = setTimeout(() => setIsDeleting(true), 2000);
         }
       } else {
-        // Deleting backward
         if (currentRole.length > 0) {
           setCurrentRole(currentRole.slice(0, -1));
-          timeoutId = setTimeout(type, 50 + Math.random() * 30);
+          timeoutId = setTimeout(type, deleteSpeed);
         } else {
-          // Word deleted, move to next word
           setIsDeleting(false);
           setRoleIndex((prev) => (prev + 1) % roles.length);
           timeoutId = setTimeout(type, 300);
@@ -70,125 +77,164 @@ const HomePage = () => {
   // Cursor blink effect
   useEffect(() => {
     const interval = setInterval(() => {
-      setShowCursor(prev => !prev);
+      setShowCursor((prev) => !prev);
     }, 530);
 
     return () => clearInterval(interval);
   }, []);
 
   const socials = [
-    { label: 'GitHub', href: 'https://github.com/AL-AHMODANY', icon: Github, external: true },
-    { label: 'Email', href: 'mailto:rahmanhamad36@gmail.com', icon: Mail, external: false },
-    { label: 'WhatsApp', href: 'https://wa.me/2348129117778', icon: WhatsAppIcon, external: true },
-    { label: 'Phone', href: 'tel:+2348129117778', icon: Phone, external: false },
+    {
+      label: "GitHub",
+      href: "https://github.com/AL-AHMODANY",
+      icon: Github,
+      external: true,
+    },
+    {
+      label: "Email",
+      href: "mailto:rahmanhamad36@gmail.com",
+      icon: Mail,
+      external: false,
+    },
+    {
+      label: "WhatsApp",
+      href: "https://wa.me/2348129117778",
+      icon: WhatsAppIcon,
+      external: true,
+    },
+    {
+      label: "Phone",
+      href: "tel:+2348129117778",
+      icon: Phone,
+      external: false,
+    },
   ];
 
   const stats = [
-    { value: '7+', label: 'Projects Shipped' },
-    { value: '2+', label: 'Years Building' },
-    { value: '5', label: 'Product Types' },
+    { value: "7+", label: "Projects Shipped" },
+    { value: "2+", label: "Years Building" },
+    { value: "5", label: "Product Types" },
   ];
 
   const techBadges = [
-    { name: 'React', icon: '⚛️', style: 'top: 2%; left: 8%; animation-delay: 0s' },
-    { name: 'Tailwind', icon: 'UI', style: 'bottom: 8%; left: 2%; animation-delay: 1.5s' },
-    { name: 'Vite', icon: 'V', style: 'top: 14%; right: 4%; animation-delay: 0.8s' },
-    { name: 'Firebase', icon: 'DB', style: 'bottom: 18%; right: 3%; animation-delay: 2.5s' },
+    {
+      name: "React",
+      icon: "⚛️",
+      style: "top: 2%; left: 8%; animation-delay: 0s",
+    },
+    {
+      name: "Tailwind",
+      icon: "UI",
+      style: "bottom: 8%; left: 2%; animation-delay: 1.5s",
+    },
+    {
+      name: "Vite",
+      icon: "V",
+      style: "top: 14%; right: 4%; animation-delay: 0.8s",
+    },
+    {
+      name: "Firebase",
+      icon: "DB",
+      style: "bottom: 18%; right: 3%; animation-delay: 2.5s",
+    },
   ];
 
   const particles = [
-    { style: 'top: 20%; left: 5%; animation-delay: 0s' },
-    { style: 'top: 70%; left: 8%; animation-delay: 1s' },
-    { style: 'top: 45%; right: 5%; animation-delay: 2s' },
-    { style: 'top: 80%; right: 15%; animation-delay: 0.5s' },
-    { style: 'top: 10%; right: 25%; animation-delay: 1.5s' },
+    { style: "top: 20%; left: 5%; animation-delay: 0s" },
+    { style: "top: 70%; left: 8%; animation-delay: 1s" },
+    { style: "top: 45%; right: 5%; animation-delay: 2s" },
+    { style: "top: 80%; right: 15%; animation-delay: 0.5s" },
+    { style: "top: 10%; right: 25%; animation-delay: 1.5s" },
   ];
 
   const highlights = [
     {
       icon: Code2,
-      title: 'Clean Frontend Architecture',
-      desc: 'Reusable React component systems, clear state flow, and project structure that stays manageable as features grow.',
+      title: "Clean Frontend Architecture",
+      desc: "Reusable React component systems, clear state flow, and project structure that stays manageable as features grow.",
     },
     {
       icon: Palette,
-      title: 'Design-Led Implementation',
-      desc: 'Interfaces that respect spacing, typography, motion, and visual hierarchy so products feel intentional instead of assembled.',
+      title: "Design-Led Implementation",
+      desc: "Interfaces that respect spacing, typography, motion, and visual hierarchy so products feel intentional instead of assembled.",
     },
     {
       icon: Zap,
-      title: 'Performance With Polish',
-      desc: 'Fast loading, responsive behavior, smooth interactions, and practical optimization work that improves real user experience.',
+      title: "Performance With Polish",
+      desc: "Fast loading, responsive behavior, smooth interactions, and practical optimization work that improves real user experience.",
     },
   ];
 
   const services = [
     {
-      icon: 'DEV',
-      title: 'Frontend Development',
-      desc: 'Full React application builds for startups, businesses, and organizations that need reliable product interfaces from the ground up.',
-      tags: ['React', 'Vite', 'JavaScript'],
+      icon: "DEV",
+      title: "Frontend Development",
+      desc: "Full React application builds for startups, businesses, and organizations that need reliable product interfaces from the ground up.",
+      tags: ["React", "Vite", "JavaScript"],
     },
     {
-      icon: 'UI',
-      title: 'Design to Code Delivery',
-      desc: 'Converting wireframes or Figma files into responsive, production-ready interfaces without losing the detail that made the design strong.',
-      tags: ['Tailwind CSS', 'Figma', 'Responsive UI'],
+      icon: "UI",
+      title: "Design to Code Delivery",
+      desc: "Converting wireframes or Figma files into responsive, production-ready interfaces without losing the detail that made the design strong.",
+      tags: ["Tailwind CSS", "Figma", "Responsive UI"],
     },
     {
-      icon: 'SHOP',
-      title: 'E-commerce Experiences',
-      desc: 'Storefronts, product pages, carts, and checkout flows built to feel smooth, trustworthy, and conversion-friendly across devices.',
-      tags: ['React Router', 'Product UX'],
+      icon: "SHOP",
+      title: "E-commerce Experiences",
+      desc: "Storefronts, product pages, carts, and checkout flows built to feel smooth, trustworthy, and conversion-friendly across devices.",
+      tags: ["React Router", "Product UX"],
     },
     {
-      icon: 'FAST',
-      title: 'Frontend Optimization',
-      desc: 'Improving existing products through cleanup, performance tuning, accessibility fixes, and better interaction design.',
-      tags: ['Lighthouse', 'Refactoring', 'Accessibility'],
+      icon: "FAST",
+      title: "Frontend Optimization",
+      desc: "Improving existing products through cleanup, performance tuning, accessibility fixes, and better interaction design.",
+      tags: ["Lighthouse", "Refactoring", "Accessibility"],
     },
     {
-      icon: 'API',
-      title: 'Firebase and API Integration',
-      desc: 'Authentication, realtime data, forms, dashboards, and backend-powered UI flows connected cleanly to the frontend layer.',
-      tags: ['Firestore', 'Auth', 'REST APIs'],
+      icon: "API",
+      title: "Firebase and API Integration",
+      desc: "Authentication, realtime data, forms, dashboards, and backend-powered UI flows connected cleanly to the frontend layer.",
+      tags: ["Firestore", "Auth", "REST APIs"],
     },
     {
-      icon: 'RWD',
-      title: 'Responsive Product UI',
-      desc: 'Layouts and components that stay readable, usable, and visually strong from mobile screens to large desktop displays.',
-      tags: ['Mobile First', 'Cross Browser', 'Scalable CSS'],
+      icon: "RWD",
+      title: "Responsive Product UI",
+      desc: "Layouts and components that stay readable, usable, and visually strong from mobile screens to large desktop displays.",
+      tags: ["Mobile First", "Cross Browser", "Scalable CSS"],
     },
   ];
 
   const counters = [
-    { icon: FolderOpen, value: '7+', label: 'Live Projects' },
-    { icon: Clock, value: '2+', label: 'Years in Practice' },
-    { icon: Users, value: '10+', label: 'Core User Flows Built' },
-    { icon: Award, value: '100%', label: 'Launch Focus' },
+    { icon: FolderOpen, value: "7+", label: "Live Projects" },
+    { icon: Clock, value: "2+", label: "Years in Practice" },
+    { icon: Users, value: "10+", label: "Core User Flows Built" },
+    { icon: Award, value: "100%", label: "Launch Focus" },
   ];
 
   const testimonials = [
     {
-      name: 'Amir Hassan',
-      role: 'CEO - Nour Zamon',
-      initials: 'AH',
-      color: '#00FF94',
-      quote: 'He brought structure to a fast-moving project and translated ideas into a clean product we were proud to launch.',
+      name: "Amir Hassan",
+      role: "CEO - Nour Zamon",
+      initials: "AH",
+      color: "#00FF94",
+      quote:
+        "He brought structure to a fast-moving project and translated ideas into a clean product we were proud to launch.",
     },
     {
-      name: 'Yusuf Kamara',
-      role: 'Director - Mosque Management',
-      initials: 'YK',
-      color: '#38BDF8',
-      quote: 'The final system felt thoughtful from top to bottom. It was easy to use, easy to explain to our community, and clearly built with care.',
+      name: "Yusuf Kamara",
+      role: "Director - Mosque Management",
+      initials: "YK",
+      color: "#38BDF8",
+      quote:
+        "The final system felt thoughtful from top to bottom. It was easy to use, easy to explain to our community, and clearly built with care.",
     },
     {
-      name: 'Sara Malik',
-      role: 'Founder - LearnHub',
-      initials: 'SM',
-      color: '#8B5CF6',
-      quote: 'Strong design instincts, clear communication, and reliable delivery. The platform looked premium and worked exactly the way we needed.',
+      name: "Sara Malik",
+      role: "Founder - LearnHub",
+      initials: "SM",
+      color: "#8B5CF6",
+      quote:
+        "Strong design instincts, clear communication, and reliable delivery. The platform looked premium and worked exactly the way we needed.",
     },
   ];
 
@@ -199,11 +245,17 @@ const HomePage = () => {
       {/* HERO SECTION */}
       <section className="min-h-screen relative flex items-center justify-center overflow-hidden hero-gradient grid-pattern">
         <div className="absolute top-1/4 left-1/6 w-96 h-96 rounded-full bg-accent/8 blur-3xl animate-pulse-slow"></div>
-        <div className="absolute bottom-1/3 right-1/5 w-80 h-80 rounded-full bg-blue-500/6 blur-3xl animate-pulse-slow" style={{animationDelay: '2s'}}></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 rounded-full bg-purple-500/5 blur-3xl animate-pulse-slow" style={{animationDelay: '4s'}}></div>
+        <div
+          className="absolute bottom-1/3 right-1/5 w-80 h-80 rounded-full bg-blue-500/6 blur-3xl animate-pulse-slow"
+          style={{ animationDelay: "2s" }}
+        ></div>
+        <div
+          className="absolute top-1/2 left-1/2 w-64 h-64 rounded-full bg-purple-500/5 blur-3xl animate-pulse-slow"
+          style={{ animationDelay: "4s" }}
+        ></div>
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 pt-28 pb-16 flex flex-col lg:flex-row items-center gap-16 lg:gap-20">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
@@ -215,23 +267,34 @@ const HomePage = () => {
             </div>
 
             <h1 className="font-display font-extrabold leading-none mb-4">
-              <span className="block text-5xl md:text-7xl lg:text-8xl tracking-tight">AL-</span>
-              <span className="block text-5xl md:text-7xl lg:text-8xl tracking-tight text-gradient">AHMODANY</span>
+              <span className="block text-5xl md:text-7xl lg:text-8xl tracking-tight">
+                AL-
+              </span>
+              <span className="block text-5xl md:text-7xl lg:text-8xl tracking-tight text-gradient">
+                AHMODANY
+              </span>
             </h1>
 
             <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
-              <span className="font-mono text-[var(--muted)] text-sm">&lt;</span>
+              <span className="font-mono text-[var(--muted)] text-sm">
+                &lt;
+              </span>
               <span className="font-display text-xl md:text-2xl font-semibold text-[var(--muted)] min-h-[2rem] flex items-center">
                 {currentRole}
-                <span className={`ml-1 w-0.5 h-6 bg-accent transition-opacity duration-100 ${showCursor ? 'opacity-100' : 'opacity-0'}`}></span>
+                <span
+                  className={`ml-1 w-0.5 h-6 bg-accent transition-opacity duration-100 ${showCursor ? "opacity-100" : "opacity-0"}`}
+                ></span>
               </span>
-              <span className="font-mono text-[var(--muted)] text-sm">/&gt;</span>
+              <span className="font-mono text-[var(--muted)] text-sm">
+                /&gt;
+              </span>
             </div>
 
             <p className="font-body text-[var(--muted)] text-lg max-w-2xl mx-auto lg:mx-0 mb-6 leading-relaxed">
-              I craft modern React experiences that balance visual excellence with technical precision. 
-              My focus is building interfaces that feel intuitive, perform flawlessly, and scale 
-              seamlessly from concept to production.
+              I build React applications with polished interfaces, smooth
+              interactions, and dependable performance. My focus is on
+              user-first design, clean front-end structure, and delivering
+              websites that feel seamless from first click to launch.
             </p>
 
             <div className="flex flex-wrap gap-2 justify-center lg:justify-start mb-10">
@@ -247,7 +310,10 @@ const HomePage = () => {
 
             <div className="flex flex-wrap gap-4 justify-center lg:justify-start mb-10">
               <Link to="/projects" className="btn-primary group">
-                <Folder size={16} className="group-hover:rotate-12 transition-transform" />
+                <Folder
+                  size={16}
+                  className="group-hover:rotate-12 transition-transform"
+                />
                 View Projects
               </Link>
               <Link to="/resume" className="btn-outline">
@@ -265,12 +331,12 @@ const HomePage = () => {
                 <a
                   key={s.label}
                   href={s.href}
-                  target={s.external ? '_blank' : undefined}
-                  rel={s.external ? 'noreferrer' : undefined}
+                  target={s.external ? "_blank" : undefined}
+                  rel={s.external ? "noreferrer" : undefined}
                   className={`w-10 h-10 rounded-xl card-glass flex items-center justify-center hover:border-accent/50 hover:scale-110 transition-all duration-300 ${
-                    s.label === 'WhatsApp' 
-                      ? 'hover:text-[#25D366] hover:border-[#25D366]/50' 
-                      : 'hover:text-accent'
+                    s.label === "WhatsApp"
+                      ? "hover:text-[#25D366] hover:border-[#25D366]/50"
+                      : "hover:text-accent"
                   }`}
                 >
                   <s.icon size={16} />
@@ -281,14 +347,18 @@ const HomePage = () => {
             <div className="flex gap-8 justify-center lg:justify-start pt-8 border-t border-[var(--border)]">
               {stats.map((stat) => (
                 <div key={stat.label} className="text-center lg:text-left">
-                  <p className="font-display font-bold text-2xl text-gradient">{stat.value}</p>
-                  <p className="text-[var(--muted)] text-xs font-mono mt-1">{stat.label}</p>
+                  <p className="font-display font-bold text-2xl text-gradient">
+                    {stat.value}
+                  </p>
+                  <p className="text-[var(--muted)] text-xs font-mono mt-1">
+                    {stat.label}
+                  </p>
                 </div>
               ))}
             </div>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -297,12 +367,21 @@ const HomePage = () => {
             <div className="relative w-64 h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 max-w-full mx-auto">
               {/* Outer rings */}
               <div className="absolute inset-0 rounded-full border border-accent/20 animate-spin-slow"></div>
-              <div className="absolute inset-4 rounded-full border border-accent/15 animate-spin-slow" style={{animationDirection: 'reverse', animationDuration: '15s'}}></div>
-              <div className="absolute inset-8 rounded-full border border-accent/10 animate-spin-slow" style={{animationDuration: '25s'}}></div>
-              
+              <div
+                className="absolute inset-4 rounded-full border border-accent/15 animate-spin-slow"
+                style={{
+                  animationDirection: "reverse",
+                  animationDuration: "15s",
+                }}
+              ></div>
+              <div
+                className="absolute inset-8 rounded-full border border-accent/10 animate-spin-slow"
+                style={{ animationDuration: "25s" }}
+              ></div>
+
               {/* Main identity ring */}
               <div className="identity-ring absolute inset-6 rounded-full"></div>
-              
+
               {/* Glow effect */}
               <div className="absolute inset-12 rounded-full bg-gradient-to-br from-accent/20 via-emerald-500/15 to-blue-500/10 blur-xl"></div>
 
@@ -310,13 +389,17 @@ const HomePage = () => {
               <div className="absolute inset-12 rounded-full card-glass border border-accent/30 flex flex-col items-center justify-center shadow-2xl overflow-hidden">
                 <div className="absolute inset-0 bg-gradient-to-br from-accent/10 to-transparent"></div>
                 <div className="relative z-10 text-center px-2">
-                  <p className="font-display font-black text-xl md:text-2xl lg:text-3xl text-gradient leading-none">AL</p>
+                  <p className="font-display font-black text-xl md:text-2xl lg:text-3xl text-gradient leading-none">
+                    AL
+                  </p>
                   <p className="font-mono text-[8px] md:text-[10px] lg:text-xs text-accent mt-1 tracking-[0.3em] uppercase">
                     AHMODANY
                   </p>
                   <div className="mt-2 flex items-center gap-1 justify-center">
                     <span className="w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-accent animate-pulse"></span>
-                    <span className="font-mono text-[8px] md:text-[10px] text-[var(--muted)]">Frontend Dev</span>
+                    <span className="font-mono text-[8px] md:text-[10px] text-[var(--muted)]">
+                      Frontend Dev
+                    </span>
                   </div>
                 </div>
               </div>
@@ -325,22 +408,43 @@ const HomePage = () => {
               <div className="absolute top-[5%] left-[10%] card-glass rounded-lg px-2 py-1 text-[10px] md:text-xs font-mono border border-[var(--border)] hover:border-accent/50 hover:text-accent transition-all animate-float shadow-lg cursor-default">
                 ⚛️ React
               </div>
-              <div className="absolute bottom-[10%] left-[5%] card-glass rounded-lg px-2 py-1 text-[10px] md:text-xs font-mono border border-[var(--border)] hover:border-accent/50 hover:text-accent transition-all animate-float shadow-lg cursor-default" style={{animationDelay: '1.5s'}}>
+              <div
+                className="absolute bottom-[10%] left-[5%] card-glass rounded-lg px-2 py-1 text-[10px] md:text-xs font-mono border border-[var(--border)] hover:border-accent/50 hover:text-accent transition-all animate-float shadow-lg cursor-default"
+                style={{ animationDelay: "1.5s" }}
+              >
                 🎨 Tailwind
               </div>
-              <div className="absolute top-[15%] right-[8%] card-glass rounded-lg px-2 py-1 text-[10px] md:text-xs font-mono border border-[var(--border)] hover:border-accent/50 hover:text-accent transition-all animate-float shadow-lg cursor-default" style={{animationDelay: '0.8s'}}>
+              <div
+                className="absolute top-[15%] right-[8%] card-glass rounded-lg px-2 py-1 text-[10px] md:text-xs font-mono border border-[var(--border)] hover:border-accent/50 hover:text-accent transition-all animate-float shadow-lg cursor-default"
+                style={{ animationDelay: "0.8s" }}
+              >
                 ⚡ Vite
               </div>
-              <div className="absolute bottom-[20%] right-[5%] card-glass rounded-lg px-2 py-1 text-[10px] md:text-xs font-mono border border-[var(--border)] hover:border-accent/50 hover:text-accent transition-all animate-float shadow-lg cursor-default" style={{animationDelay: '2.5s'}}>
+              <div
+                className="absolute bottom-[20%] right-[5%] card-glass rounded-lg px-2 py-1 text-[10px] md:text-xs font-mono border border-[var(--border)] hover:border-accent/50 hover:text-accent transition-all animate-float shadow-lg cursor-default"
+                style={{ animationDelay: "2.5s" }}
+              >
                 🔥 Firebase
               </div>
 
               {/* Floating particles */}
               <div className="absolute top-[25%] left-[8%] w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-accent/60 animate-pulse"></div>
-              <div className="absolute top-[70%] left-[12%] w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-accent/60 animate-pulse" style={{animationDelay: '1s'}}></div>
-              <div className="absolute top-[45%] right-[8%] w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-accent/60 animate-pulse" style={{animationDelay: '2s'}}></div>
-              <div className="absolute top-[80%] right-[18%] w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-accent/60 animate-pulse" style={{animationDelay: '0.5s'}}></div>
-              <div className="absolute top-[15%] right-[28%] w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-accent/60 animate-pulse" style={{animationDelay: '1.5s'}}></div>
+              <div
+                className="absolute top-[70%] left-[12%] w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-accent/60 animate-pulse"
+                style={{ animationDelay: "1s" }}
+              ></div>
+              <div
+                className="absolute top-[45%] right-[8%] w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-accent/60 animate-pulse"
+                style={{ animationDelay: "2s" }}
+              ></div>
+              <div
+                className="absolute top-[80%] right-[18%] w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-accent/60 animate-pulse"
+                style={{ animationDelay: "0.5s" }}
+              ></div>
+              <div
+                className="absolute top-[15%] right-[28%] w-1 h-1 md:w-1.5 md:h-1.5 rounded-full bg-accent/60 animate-pulse"
+                style={{ animationDelay: "1.5s" }}
+              ></div>
             </div>
           </motion.div>
         </div>
@@ -359,8 +463,9 @@ const HomePage = () => {
             Built for <span className="text-gradient">clarity and polish</span>
           </h2>
           <p className="text-[var(--muted)] text-lg mt-4 max-w-3xl mx-auto md:mx-0">
-            I care about what users feel on the screen and what developers inherit behind it.
-            The best frontend work balances speed, maintainability, and visual confidence.
+            I care about what users feel on the screen and what developers
+            inherit behind it. The best frontend work balances speed,
+            maintainability, and visual confidence.
           </p>
         </div>
 
@@ -377,8 +482,12 @@ const HomePage = () => {
               <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-accent/20 transition-all duration-300">
                 <item.icon size={22} className="text-accent" />
               </div>
-              <h3 className="font-display font-semibold text-lg mb-2">{item.title}</h3>
-              <p className="text-[var(--muted)] text-sm leading-relaxed">{item.desc}</p>
+              <h3 className="font-display font-semibold text-lg mb-2">
+                {item.title}
+              </h3>
+              <p className="text-[var(--muted)] text-sm leading-relaxed">
+                {item.desc}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -390,11 +499,14 @@ const HomePage = () => {
           <div className="max-w-2xl">
             <span className="tag">Featured Work</span>
             <h2 className="font-display font-bold text-4xl md:text-5xl mt-3">
-              Selected<br /><span className="text-gradient">Projects</span>
+              Selected
+              <br />
+              <span className="text-gradient">Projects</span>
             </h2>
             <p className="text-[var(--muted)] text-lg mt-4">
-              A quick look at the kinds of products I have shipped: community platforms, e-commerce experiences,
-              utility apps, and interfaces designed to feel modern from first click to final checkout.
+              A quick look at the kinds of products I have shipped: community
+              platforms, e-commerce experiences, utility apps, and interfaces
+              designed to feel modern from first click to final checkout.
             </p>
           </div>
           <Link to="/projects" className="btn-outline hidden md:inline-flex">
@@ -428,8 +540,9 @@ const HomePage = () => {
               Services I <span className="text-gradient">Provide</span>
             </h2>
             <p className="text-[var(--muted)] text-lg mt-4 max-w-3xl mx-auto">
-              Whether you need a full interface built from scratch or an existing product refined,
-              I help teams move from rough ideas to production-ready frontend experiences.
+              Whether you need a full interface built from scratch or an
+              existing product refined, I help teams move from rough ideas to
+              production-ready frontend experiences.
             </p>
           </div>
 
@@ -446,8 +559,12 @@ const HomePage = () => {
                 <div className="absolute top-0 right-0 w-32 h-32 bg-accent/3 rounded-full blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
                 <div className="relative z-10">
                   <div className="text-3xl mb-5">{service.icon}</div>
-                  <h3 className="font-display font-bold text-lg mb-3">{service.title}</h3>
-                  <p className="text-[var(--muted)] text-sm leading-relaxed mb-5">{service.desc}</p>
+                  <h3 className="font-display font-bold text-lg mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-[var(--muted)] text-sm leading-relaxed mb-5">
+                    {service.desc}
+                  </p>
                   <div className="flex flex-wrap gap-2">
                     {service.tags.map((tag) => (
                       <span
@@ -474,10 +591,13 @@ const HomePage = () => {
             <div className="relative z-10">
               <div className="text-center mb-12">
                 <span className="tag">Tech Stack</span>
-                <h2 className="font-display font-bold text-4xl mt-3">Tools of the Trade</h2>
+                <h2 className="font-display font-bold text-4xl mt-3">
+                  Tools of the Trade
+                </h2>
                 <p className="text-[var(--muted)] text-lg mt-4 max-w-3xl mx-auto">
-                  These are the tools I rely on most in production work, from interface architecture and styling
-                  to deployment, state management, and practical integration work.
+                  These are the tools I rely on most in production work, from
+                  interface architecture and styling to deployment, state
+                  management, and practical integration work.
                 </p>
               </div>
 
@@ -491,7 +611,8 @@ const HomePage = () => {
                     viewport={{ once: true }}
                     className="flex items-center gap-2 px-4 py-2 card-glass rounded-full text-sm font-mono hover:border-accent/40 hover:text-accent transition-all duration-300 cursor-default hover:scale-105 hover:-translate-y-0.5"
                   >
-                    <span>{skill.icon}</span>{skill.name}
+                    <span>{skill.icon}</span>
+                    {skill.name}
                   </motion.span>
                 ))}
               </div>
@@ -514,8 +635,9 @@ const HomePage = () => {
             Numbers behind the <span className="text-gradient">work</span>
           </h2>
           <p className="text-[var(--muted)] text-lg mt-4 max-w-2xl mx-auto">
-            Small details matter, but measurable delivery matters too. These numbers give a quick view of my
-            current body of work and the kind of consistency I aim for on every build.
+            Small details matter, but measurable delivery matters too. These
+            numbers give a quick view of my current body of work and the kind of
+            consistency I aim for on every build.
           </p>
         </div>
 
@@ -529,9 +651,16 @@ const HomePage = () => {
               viewport={{ once: true }}
               className="card-glass rounded-2xl p-8 text-center hover:border-accent/30 transition-all duration-500 group"
             >
-              <counter.icon size={28} className="text-accent mx-auto mb-4 group-hover:scale-110 transition-transform" />
-              <p className="font-display font-black text-4xl md:text-5xl text-gradient mb-2">{counter.value}</p>
-              <p className="text-[var(--muted)] text-sm font-mono">{counter.label}</p>
+              <counter.icon
+                size={28}
+                className="text-accent mx-auto mb-4 group-hover:scale-110 transition-transform"
+              />
+              <p className="font-display font-black text-4xl md:text-5xl text-gradient mb-2">
+                {counter.value}
+              </p>
+              <p className="text-[var(--muted)] text-sm font-mono">
+                {counter.label}
+              </p>
             </motion.div>
           ))}
         </div>
@@ -546,8 +675,9 @@ const HomePage = () => {
               Client <span className="text-gradient">Testimonials</span>
             </h2>
             <p className="text-[var(--muted)] text-lg mt-4 max-w-3xl mx-auto">
-              A few words from people I have built for or collaborated with. The goal is always the same:
-              ship work that feels reliable, thoughtful, and easy to trust.
+              A few words from people I have built for or collaborated with. The
+              goal is always the same: ship work that feels reliable,
+              thoughtful, and easy to trust.
             </p>
           </div>
 
@@ -563,20 +693,33 @@ const HomePage = () => {
               >
                 <div className="flex gap-1 mb-5">
                   {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={14} className="text-amber-400 fill-amber-400" />
+                    <Star
+                      key={i}
+                      size={14}
+                      className="text-amber-400 fill-amber-400"
+                    />
                   ))}
                 </div>
-                <p className="text-[var(--muted)] text-sm leading-relaxed mb-6 flex-1 italic">"{testimonial.quote}"</p>
+                <p className="text-[var(--muted)] text-sm leading-relaxed mb-6 flex-1 italic">
+                  "{testimonial.quote}"
+                </p>
                 <div className="flex items-center gap-3 pt-4 border-t border-[var(--border)]">
-                  <div 
+                  <div
                     className="w-10 h-10 rounded-xl font-display font-bold text-sm flex items-center justify-center"
-                    style={{ background: `${testimonial.color}20`, color: testimonial.color }}
+                    style={{
+                      background: `${testimonial.color}20`,
+                      color: testimonial.color,
+                    }}
                   >
                     {testimonial.initials}
                   </div>
                   <div>
-                    <p className="font-display font-semibold text-sm">{testimonial.name}</p>
-                    <p className="text-[var(--muted)] text-xs font-mono">{testimonial.role}</p>
+                    <p className="font-display font-semibold text-sm">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-[var(--muted)] text-xs font-mono">
+                      {testimonial.role}
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -594,11 +737,14 @@ const HomePage = () => {
             <div className="relative z-10">
               <span className="tag mb-6 inline-block">Let's Connect</span>
               <h2 className="font-display font-black text-4xl md:text-6xl mb-6 leading-tight">
-                Have a project in<br /><span className="text-gradient">mind?</span>
+                Have a project in
+                <br />
+                <span className="text-gradient">mind?</span>
               </h2>
               <p className="text-[var(--muted)] text-xl mb-10 max-w-2xl mx-auto leading-relaxed">
-                If you need a React developer who cares about product feel, interface quality, and delivery discipline,
-                I would love to hear what you are building and where you need support.
+                If you need a React developer who cares about product feel,
+                interface quality, and delivery discipline, I would love to hear
+                what you are building and where you need support.
               </p>
               <div className="flex flex-wrap gap-4 justify-center">
                 <Link to="/contact" className="btn-primary text-base px-8 py-4">
