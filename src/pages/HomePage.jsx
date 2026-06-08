@@ -24,18 +24,19 @@ import WhatsAppIcon from "../components/ui/WhatsAppIcon";
 import { projects } from "../data/projects";
 import { skills as allSkills } from "../data/skills";
 
+const roles = [
+  "Frontend Developer",
+  "React Developer",
+  "UI Engineer",
+  "Web Developer",
+];
+
 const HomePage = () => {
   const [currentRole, setCurrentRole] = useState("");
   const [roleIndex, setRoleIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [showCursor, setShowCursor] = useState(true);
 
-  const roles = [
-    "Frontend Developer",
-    "React Developer",
-    "UI Engineer",
-    "Web Developer",
-  ];
   const specialties = [
     "React apps",
     "Tailwind UI",
@@ -72,7 +73,7 @@ const HomePage = () => {
 
     timeoutId = setTimeout(type, 100);
     return () => clearTimeout(timeoutId);
-  }, [currentRole, isDeleting, roleIndex, roles]);
+  }, [currentRole, isDeleting, roleIndex]);
 
   // Cursor blink effect
   useEffect(() => {
