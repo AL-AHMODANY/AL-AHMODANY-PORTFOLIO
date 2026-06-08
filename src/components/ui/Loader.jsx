@@ -109,26 +109,39 @@ const Loader = ({ onComplete }) => {
           }`}
         >
           {/* English Name with enhanced styling */}
-          <h1 
-            className={`text-6xl md:text-8xl lg:text-9xl font-black mb-6 tracking-tight leading-none ${
-              isDark ? 'text-white' : 'text-slate-900'
-            }`}
-            style={{
-              fontFamily: "'Inter', 'SF Pro Display', 'Helvetica Neue', sans-serif",
-              background: isDark
-                ? 'linear-gradient(135deg, #ffffff 0%, #10B981 50%, #059669 100%)'
-                : 'linear-gradient(135deg, #1F2937 0%, #10B981 50%, #047857 100%)',
-              WebkitBackgroundClip: 'text',
-              WebkitTextFillColor: 'transparent',
-              backgroundClip: 'text',
-              filter: 'drop-shadow(0 4px 6px rgba(16, 185, 129, 0.25))',
-              textShadow: isDark 
-                ? '0 0 40px rgba(16, 185, 129, 0.3)'
-                : '0 0 30px rgba(16, 185, 129, 0.2)'
-            }}
-          >
-            AL-AHMODANY
-          </h1>
+          <div className="relative mb-8">
+            <h1 
+              className={`text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter leading-none ${
+                isDark ? 'text-white' : 'text-slate-900'
+              }`}
+              style={{
+                fontFamily: "'Inter', 'SF Pro Display', 'Helvetica Neue', sans-serif",
+                background: isDark
+                  ? 'linear-gradient(135deg, #ffffff 0%, #f8fafc 20%, #10B981 40%, #34D399 60%, #6EE7B7 80%, #ffffff 100%)'
+                  : 'linear-gradient(135deg, #0f172a 0%, #1e293b 20%, #10B981 40%, #059669 60%, #047857 80%, #0f172a 100%)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent',
+                backgroundClip: 'text',
+                backgroundSize: '200% 100%',
+                animation: 'gradientShift 4s ease-in-out infinite',
+                filter: `drop-shadow(0 0 30px ${isDark ? 'rgba(16, 185, 129, 0.4)' : 'rgba(16, 185, 129, 0.3)'})`,
+                letterSpacing: '-0.05em'
+              }}
+            >
+              AL-AHMODANY
+            </h1>
+            
+            {/* Animated underline */}
+            <div 
+              className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 h-1 rounded-full transition-all duration-1000 delay-700 ${
+                textVisible ? 'w-32 opacity-70' : 'w-0 opacity-0'
+              }`}
+              style={{
+                background: 'linear-gradient(90deg, transparent 0%, #10B981 50%, transparent 100%)',
+                boxShadow: '0 0 20px rgba(16, 185, 129, 0.6)'
+              }}
+            />
+          </div>
           
           {/* Arabic Name with proper styling and brackets */}
           <div 
@@ -289,30 +302,6 @@ const Loader = ({ onComplete }) => {
           style={{ 
             borderColor: isDark ? '#34D399' : '#10B981',
             boxShadow: `0 0 20px ${isDark ? 'rgba(52, 211, 153, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`
-          }}
-        />
-      </div>
-      
-      <div className="absolute bottom-8 right-8">
-        <div 
-          className={`w-10 h-10 rounded-full transition-all duration-1200 delay-600 ${
-            textVisible ? 'opacity-40 scale-100' : 'opacity-0 scale-0'
-          }`}
-          style={{ 
-            background: isDark ? '#10B981' : '#059669',
-            boxShadow: `0 0 25px ${isDark ? 'rgba(16, 185, 129, 0.4)' : 'rgba(5, 150, 105, 0.4)'}`
-          }}
-        />
-      </div>
-
-      <div className="absolute top-1/3 right-8">
-        <div 
-          className={`w-6 h-6 rotate-45 border-2 transition-all duration-1200 delay-800 ${
-            textVisible ? 'opacity-30 scale-100' : 'opacity-0 scale-0'
-          }`}
-          style={{ 
-            borderColor: isDark ? '#6EE7B7' : '#047857',
-            boxShadow: `0 0 15px ${isDark ? 'rgba(110, 231, 183, 0.3)' : 'rgba(4, 120, 87, 0.3)'}`
           }}
         />
       </div>
