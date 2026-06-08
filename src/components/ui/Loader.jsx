@@ -293,18 +293,6 @@ const Loader = ({ onComplete }) => {
         />
       </div>
 
-      {/* Enhanced corner accents */}
-      <div className="absolute top-8 left-8">
-        <div 
-          className={`w-16 h-16 rounded-xl border-2 transition-all duration-1200 delay-400 ${
-            textVisible ? 'opacity-40 rotate-0' : 'opacity-0 -rotate-45'
-          }`}
-          style={{ 
-            borderColor: isDark ? '#34D399' : '#10B981',
-            boxShadow: `0 0 20px ${isDark ? 'rgba(52, 211, 153, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`
-          }}
-        />
-      </div>
     </div>
   );
 };
