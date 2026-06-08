@@ -29,12 +29,12 @@ const Loader = ({ onComplete }) => {
             }, 500);
             return 100;
           }
-          return prev + 2;
+          return prev + 1.5;
         });
-      }, 50);
+      }, 60);
 
       return () => clearInterval(interval);
-    }, 800);
+    }, 1000);
 
     return () => {
       clearTimeout(textTimer);
@@ -49,151 +49,271 @@ const Loader = ({ onComplete }) => {
       }`}
       style={{
         background: isDark 
-          ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #0F172A 100%)'
-          : 'linear-gradient(135deg, #FAFAFA 0%, #F1F5F9 50%, #FAFAFA 100%)'
+          ? 'linear-gradient(135deg, #0F172A 0%, #1E293B 30%, #334155 60%, #1E293B 90%, #0F172A 100%)'
+          : 'linear-gradient(135deg, #FAFAFA 0%, #F8FAFC 30%, #E2E8F0 60%, #F1F5F9 90%, #FAFAFA 100%)',
+        fontFamily: "'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif"
       }}
     >
-      {/* Animated background particles */}
+      {/* Enhanced animated background particles */}
       <div className="absolute inset-0 overflow-hidden">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(30)].map((_, i) => (
           <div
             key={i}
-            className="absolute rounded-full opacity-20 animate-pulse"
+            className={`absolute rounded-full animate-pulse ${
+              isDark ? 'opacity-30' : 'opacity-20'
+            }`}
             style={{
               left: `${Math.random() * 100}%`,
               top: `${Math.random() * 100}%`,
-              width: `${Math.random() * 4 + 2}px`,
-              height: `${Math.random() * 4 + 2}px`,
-              background: '#10B981',
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${Math.random() * 2 + 2}s`
+              width: `${Math.random() * 6 + 3}px`,
+              height: `${Math.random() * 6 + 3}px`,
+              background: isDark 
+                ? `linear-gradient(45deg, #10B981, #059669, #047857)`
+                : `linear-gradient(45deg, #10B981, #34D399, #6EE7B7)`,
+              animationDelay: `${Math.random() * 4}s`,
+              animationDuration: `${Math.random() * 3 + 2}s`,
+              boxShadow: `0 0 ${Math.random() * 20 + 10}px rgba(16, 185, 129, ${isDark ? 0.4 : 0.3})`
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Floating geometric shapes */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {[...Array(8)].map((_, i) => (
+          <div
+            key={`shape-${i}`}
+            className={`absolute border-2 ${
+              isDark ? 'border-emerald-400/20' : 'border-emerald-500/15'
+            } animate-float`}
+            style={{
+              left: `${10 + (i * 12)}%`,
+              top: `${15 + (Math.random() * 70)}%`,
+              width: `${20 + (Math.random() * 30)}px`,
+              height: `${20 + (Math.random() * 30)}px`,
+              borderRadius: i % 2 === 0 ? '50%' : '4px',
+              transform: `rotate(${Math.random() * 360}deg)`,
+              animationDelay: `${i * 0.5}s`,
+              animationDuration: `${4 + (Math.random() * 2)}s`
             }}
           />
         ))}
       </div>
 
       {/* Main content */}
-      <div className="relative text-center">
+      <div className="relative text-center z-10 px-8">
         {/* Logo/Name */}
         <div 
           className={`transition-all duration-1000 transform ${
-            textVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-8 scale-95'
+            textVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-12 scale-95'
           }`}
         >
-          {/* English Name */}
-          <h1 className="text-5xl md:text-7xl font-bold mb-4 text-gradient">
+          {/* English Name with enhanced styling */}
+          <h1 
+            className={`text-6xl md:text-8xl lg:text-9xl font-black mb-6 tracking-tight leading-none ${
+              isDark ? 'text-white' : 'text-slate-900'
+            }`}
+            style={{
+              fontFamily: "'Inter', 'SF Pro Display', 'Helvetica Neue', sans-serif",
+              background: isDark
+                ? 'linear-gradient(135deg, #ffffff 0%, #10B981 50%, #059669 100%)'
+                : 'linear-gradient(135deg, #1F2937 0%, #10B981 50%, #047857 100%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+              filter: 'drop-shadow(0 4px 6px rgba(16, 185, 129, 0.25))',
+              textShadow: isDark 
+                ? '0 0 40px rgba(16, 185, 129, 0.3)'
+                : '0 0 30px rgba(16, 185, 129, 0.2)'
+            }}
+          >
             AL-AHMODANY
           </h1>
           
-          {/* Arabic Name */}
-          <h2 
-            className={`text-2xl md:text-3xl font-bold mb-8 transition-all duration-1000 delay-300 ${
-              textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          {/* Arabic Name with proper styling and brackets */}
+          <div 
+            className={`text-2xl md:text-4xl lg:text-5xl font-bold mb-12 transition-all duration-1000 delay-300 ${
+              textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
             style={{
-              fontFamily: 'system-ui, -apple-system, sans-serif',
+              fontFamily: "'Amiri', 'Noto Sans Arabic', 'Cairo', 'Tajawal', system-ui, sans-serif",
               direction: 'rtl',
-              color: isDark ? '#94A3B8' : '#64748B'
+              color: isDark ? '#94A3B8' : '#64748B',
+              lineHeight: '1.2',
+              letterSpacing: '0.05em'
             }}
           >
-            الأحمداني
-          </h2>
+            <span className={`${isDark ? 'text-slate-400' : 'text-slate-600'} text-3xl md:text-4xl lg:text-5xl`}>
+              (
+            </span>
+            <span 
+              className={`mx-2 ${isDark ? 'text-emerald-300' : 'text-emerald-700'}`}
+              style={{
+                textShadow: isDark 
+                  ? '0 0 20px rgba(16, 185, 129, 0.4)'
+                  : '0 0 15px rgba(16, 185, 129, 0.3)'
+              }}
+            >
+              أحمد التجاني الأحمداني
+            </span>
+            <span className={`${isDark ? 'text-slate-400' : 'text-slate-600'} text-3xl md:text-4xl lg:text-5xl`}>
+              )
+            </span>
+          </div>
         </div>
 
-        {/* Loading animation */}
+        {/* Enhanced loading animation */}
         <div 
-          className={`mt-12 transition-all duration-1000 delay-500 ${
-            textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+          className={`mt-16 transition-all duration-1000 delay-500 ${
+            textVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
           }`}
         >
           {/* Progress bar container */}
-          <div className="relative w-64 mx-auto mb-6">
+          <div className="relative w-80 mx-auto mb-8">
             <div 
-              className="h-1 rounded-full overflow-hidden"
+              className="h-2 rounded-full overflow-hidden shadow-inner"
               style={{
-                background: isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'
+                background: isDark 
+                  ? 'linear-gradient(90deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.05) 100%)'
+                  : 'linear-gradient(90deg, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.1) 50%, rgba(0,0,0,0.05) 100%)',
+                border: `1px solid ${isDark ? 'rgba(255,255,255,0.1)' : 'rgba(0,0,0,0.1)'}`
               }}
             >
               <div
-                className="h-full bg-gradient-to-r from-accent to-emerald-400 rounded-full transition-all duration-300 ease-out"
-                style={{ width: `${progress}%` }}
-              />
+                className="h-full rounded-full transition-all duration-500 ease-out relative overflow-hidden"
+                style={{ 
+                  width: `${progress}%`,
+                  background: 'linear-gradient(90deg, #10B981 0%, #34D399 50%, #6EE7B7 100%)',
+                  boxShadow: '0 0 20px rgba(16, 185, 129, 0.6), inset 0 1px 0 rgba(255,255,255,0.3)'
+                }}
+              >
+                <div 
+                  className="absolute inset-0 animate-pulse"
+                  style={{
+                    background: 'linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)',
+                    transform: 'translateX(-100%)',
+                    animation: 'shimmer 2s infinite'
+                  }}
+                />
+              </div>
             </div>
             
-            {/* Glowing dot */}
+            {/* Enhanced glowing dot */}
             <div
-              className="absolute top-1/2 w-3 h-3 rounded-full transform -translate-y-1/2 transition-all duration-300 ease-out"
+              className="absolute top-1/2 w-4 h-4 rounded-full transform -translate-y-1/2 transition-all duration-500 ease-out animate-pulse"
               style={{
                 left: `${progress}%`,
-                background: '#10B981',
-                boxShadow: '0 0 12px rgba(16, 185, 129, 0.8)',
-                marginLeft: '-6px'
+                background: 'radial-gradient(circle, #ffffff 0%, #10B981 50%, #059669 100%)',
+                boxShadow: '0 0 20px rgba(16, 185, 129, 0.8), 0 0 40px rgba(16, 185, 129, 0.4)',
+                marginLeft: '-8px',
+                border: '2px solid rgba(255,255,255,0.8)'
               }}
             />
           </div>
 
-          {/* Loading text */}
-          <div className="text-center">
-            <span 
-              className={`text-sm font-mono tracking-widest ${
-                isDark ? 'text-slate-400' : 'text-slate-600'
+          {/* Enhanced loading text */}
+          <div className="text-center space-y-4">
+            <div 
+              className={`text-lg font-semibold tracking-[0.3em] ${
+                isDark ? 'text-emerald-300' : 'text-emerald-700'
               }`}
+              style={{
+                fontFamily: "'Inter', 'SF Pro Text', system-ui, sans-serif",
+                textShadow: isDark 
+                  ? '0 0 15px rgba(16, 185, 129, 0.5)'
+                  : '0 0 10px rgba(16, 185, 129, 0.3)'
+              }}
             >
-              {progress < 100 ? 'LOADING' : 'WELCOME'}
-            </span>
-            <div className="flex justify-center mt-2">
+              {progress < 100 ? 'LOADING PORTFOLIO' : 'WELCOME'}
+            </div>
+            
+            <div className="flex justify-center space-x-2">
               {[...Array(3)].map((_, i) => (
                 <div
                   key={i}
-                  className="w-1 h-1 bg-accent rounded-full mx-1 animate-pulse"
+                  className="w-2 h-2 rounded-full animate-pulse"
                   style={{
-                    animationDelay: `${i * 200}ms`,
-                    animationDuration: '1s'
+                    background: isDark ? '#34D399' : '#10B981',
+                    animationDelay: `${i * 300}ms`,
+                    animationDuration: '1.5s',
+                    boxShadow: `0 0 10px ${isDark ? '#34D399' : '#10B981'}`
                   }}
                 />
               ))}
             </div>
+            
+            <div 
+              className={`text-sm font-mono ${
+                isDark ? 'text-slate-400' : 'text-slate-600'
+              }`}
+            >
+              {Math.round(progress)}%
+            </div>
           </div>
         </div>
 
-        {/* Decorative elements */}
+        {/* Enhanced decorative elements */}
         <div 
-          className={`absolute -top-16 -left-16 w-32 h-32 rounded-full opacity-10 transition-all duration-1000 delay-700 ${
-            textVisible ? 'scale-100 rotate-0' : 'scale-0 rotate-45'
+          className={`absolute -top-20 -left-20 w-40 h-40 rounded-full transition-all duration-1200 delay-700 ${
+            textVisible ? 'scale-100 rotate-0 opacity-20' : 'scale-0 rotate-45 opacity-0'
           }`}
           style={{
-            background: 'conic-gradient(from 0deg, #10B981, transparent, transparent, #10B981)',
-            animation: textVisible ? 'spin-slow 8s linear infinite' : 'none'
+            background: isDark
+              ? 'conic-gradient(from 0deg, #10B981 0%, transparent 30%, transparent 70%, #10B981 100%)'
+              : 'conic-gradient(from 0deg, #10B981 0%, transparent 30%, transparent 70%, #10B981 100%)',
+            animation: textVisible ? 'spin-slow 12s linear infinite' : 'none',
+            filter: 'blur(1px)'
           }}
         />
         
         <div 
-          className={`absolute -bottom-16 -right-16 w-24 h-24 rounded-full opacity-10 transition-all duration-1000 delay-900 ${
-            textVisible ? 'scale-100 rotate-0' : 'scale-0 -rotate-45'
+          className={`absolute -bottom-20 -right-20 w-32 h-32 rounded-full transition-all duration-1200 delay-1000 ${
+            textVisible ? 'scale-100 rotate-0 opacity-15' : 'scale-0 -rotate-45 opacity-0'
           }`}
           style={{
-            background: 'conic-gradient(from 180deg, #10B981, transparent, transparent, #10B981)',
-            animation: textVisible ? 'spin-slow 6s linear infinite reverse' : 'none'
+            background: isDark
+              ? 'conic-gradient(from 180deg, #34D399 0%, transparent 40%, transparent 60%, #34D399 100%)'
+              : 'conic-gradient(from 180deg, #34D399 0%, transparent 40%, transparent 60%, #34D399 100%)',
+            animation: textVisible ? 'spin-slow 8s linear infinite reverse' : 'none',
+            filter: 'blur(1px)'
           }}
         />
       </div>
 
-      {/* Corner accent */}
+      {/* Enhanced corner accents */}
       <div className="absolute top-8 left-8">
         <div 
-          className={`w-12 h-12 rounded-lg border-2 transition-all duration-1000 ${
-            textVisible ? 'opacity-30 rotate-0' : 'opacity-0 -rotate-45'
+          className={`w-16 h-16 rounded-xl border-2 transition-all duration-1200 delay-400 ${
+            textVisible ? 'opacity-40 rotate-0' : 'opacity-0 -rotate-45'
           }`}
-          style={{ borderColor: '#10B981' }}
+          style={{ 
+            borderColor: isDark ? '#34D399' : '#10B981',
+            boxShadow: `0 0 20px ${isDark ? 'rgba(52, 211, 153, 0.3)' : 'rgba(16, 185, 129, 0.3)'}`
+          }}
         />
       </div>
       
       <div className="absolute bottom-8 right-8">
         <div 
-          className={`w-8 h-8 rounded-full transition-all duration-1000 delay-200 ${
+          className={`w-10 h-10 rounded-full transition-all duration-1200 delay-600 ${
+            textVisible ? 'opacity-40 scale-100' : 'opacity-0 scale-0'
+          }`}
+          style={{ 
+            background: isDark ? '#10B981' : '#059669',
+            boxShadow: `0 0 25px ${isDark ? 'rgba(16, 185, 129, 0.4)' : 'rgba(5, 150, 105, 0.4)'}`
+          }}
+        />
+      </div>
+
+      <div className="absolute top-1/3 right-8">
+        <div 
+          className={`w-6 h-6 rotate-45 border-2 transition-all duration-1200 delay-800 ${
             textVisible ? 'opacity-30 scale-100' : 'opacity-0 scale-0'
           }`}
-          style={{ background: '#10B981' }}
+          style={{ 
+            borderColor: isDark ? '#6EE7B7' : '#047857',
+            boxShadow: `0 0 15px ${isDark ? 'rgba(110, 231, 183, 0.3)' : 'rgba(4, 120, 87, 0.3)'}`
+          }}
         />
       </div>
     </div>

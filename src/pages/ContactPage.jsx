@@ -56,14 +56,41 @@ const ContactPage = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const submitForm = async () => {
+  const submitForm = async (e) => {
+    e.preventDefault();
     if (!form.name || !form.email || !form.message) return;
 
     setSending(true);
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1800));
-    setSending(false);
-    setSubmitted(true);
+    
+    try {
+      // Using Formspree for form submission
+      const response = await fetch('https://formspree.io/f/xdkovgka', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          subject: form.subject || 'Portfolio Contact Form',
+          message: form.message,
+          _replyto: form.email,
+          _subject: `Portfolio Contact: ${form.subject || 'New Message'}`,
+        }),
+      });
+
+      if (response.ok) {
+        setSending(false);
+        setSubmitted(true);
+        setForm({ name: '', email: '', subject: '', message: '' });
+      } else {
+        throw new Error('Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error sending form:', error);
+      setSending(false);
+      alert('Failed to send message. Please try again or contact me directly at rahmanhamad36@gmail.com');
+    }
   };
 
   const toggleFaq = (index) => {
@@ -187,7 +214,7 @@ const ContactPage = () => {
                     Share the project goal, current stage, timeline, or any blocker you want help solving.
                   </p>
 
-                  <div className="space-y-5">
+                  <form onSubmit={submitForm} className="space-y-5">
                     <div className="grid md:grid-cols-2 gap-5">
                       <div>
                         <label className="block text-xs font-mono text-[var(--muted)] mb-2">Your name *</label>
@@ -254,8 +281,8 @@ const ContactPage = () => {
                     </div>
 
                     <button
-                      onClick={submitForm}
-                      disabled={sending}
+                      type="submit"
+                      disabled={sending || !form.name || !form.email || !form.message}
                       className="btn-primary w-full justify-center py-4 text-base disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {sending ? <Loader size={18} className="animate-spin" /> : <Send size={18} />}
@@ -263,9 +290,9 @@ const ContactPage = () => {
                     </button>
 
                     <p className="text-[var(--muted)] text-xs text-center font-mono">
-                      I usually respond within 24 hours.
+                      Messages are sent directly to rahmanhamad36@gmail.com
                     </p>
-                  </div>
+                  </form>
                 </div>
               )}
             </div>
