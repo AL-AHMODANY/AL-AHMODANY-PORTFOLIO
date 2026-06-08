@@ -27,40 +27,54 @@ import { skills as allSkills } from '../data/skills';
 const HomePage = () => {
   const [currentRole, setCurrentRole] = useState('');
   const [roleIndex, setRoleIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [showCursor, setShowCursor] = useState(true);
 
-  const roles = ['Frontend Developer', 'React Developer', 'UI Engineer', 'Responsive Web Specialist'];
+  const roles = ['Frontend Developer', 'React Developer', 'UI Engineer', 'Web Developer'];
   const specialties = ['React apps', 'Tailwind UI', 'Firebase integration', 'E-commerce flows', 'Arabic and English UX'];
 
-  // Typing animation effect
+  // Enhanced typing animation effect
   useEffect(() => {
-    const typeEffect = () => {
-      const target = roles[roleIndex];
-
+    let timeoutId;
+    
+    const type = () => {
+      const currentWord = roles[roleIndex];
+      
       if (!isDeleting) {
-        setCurrentRole(target.substring(0, charIndex + 1));
-        setCharIndex(prev => prev + 1);
-
-        if (charIndex === target.length) {
-          setIsDeleting(true);
-          setTimeout(typeEffect, 4000); // Even longer pause when complete
-          return;
+        // Typing forward
+        if (currentRole.length < currentWord.length) {
+          setCurrentRole(currentWord.slice(0, currentRole.length + 1));
+          timeoutId = setTimeout(type, 100 + Math.random() * 50); // Variable speed for natural feel
+        } else {
+          // Word complete, pause then start deleting
+          timeoutId = setTimeout(() => setIsDeleting(true), 2000);
         }
       } else {
-        setCurrentRole(target.substring(0, charIndex - 1));
-        setCharIndex(prev => prev - 1);
-
-        if (charIndex === 0) {
+        // Deleting backward
+        if (currentRole.length > 0) {
+          setCurrentRole(currentRole.slice(0, -1));
+          timeoutId = setTimeout(type, 50 + Math.random() * 30);
+        } else {
+          // Word deleted, move to next word
           setIsDeleting(false);
-          setRoleIndex(prev => (prev + 1) % roles.length);
+          setRoleIndex((prev) => (prev + 1) % roles.length);
+          timeoutId = setTimeout(type, 300);
         }
       }
     };
 
-    const timer = setTimeout(typeEffect, isDeleting ? 150 : 200); // Even slower typing speed
-    return () => clearTimeout(timer);
-  }, [charIndex, isDeleting, roleIndex, roles]);
+    timeoutId = setTimeout(type, 100);
+    return () => clearTimeout(timeoutId);
+  }, [currentRole, isDeleting, roleIndex, roles]);
+
+  // Cursor blink effect
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setShowCursor(prev => !prev);
+    }, 530);
+
+    return () => clearInterval(interval);
+  }, []);
 
   const socials = [
     { label: 'GitHub', href: 'https://github.com/AL-AHMODANY', icon: Github, external: true },
@@ -207,8 +221,9 @@ const HomePage = () => {
 
             <div className="flex items-center justify-center lg:justify-start gap-3 mb-6">
               <span className="font-mono text-[var(--muted)] text-sm">&lt;</span>
-              <span className="font-display text-xl md:text-2xl font-semibold text-[var(--muted)]">
-                {currentRole}<span className="typed-cursor"></span>
+              <span className="font-display text-xl md:text-2xl font-semibold text-[var(--muted)] min-h-[2rem] flex items-center">
+                {currentRole}
+                <span className={`ml-1 w-0.5 h-6 bg-accent transition-opacity duration-100 ${showCursor ? 'opacity-100' : 'opacity-0'}`}></span>
               </span>
               <span className="font-mono text-[var(--muted)] text-sm">/&gt;</span>
             </div>
