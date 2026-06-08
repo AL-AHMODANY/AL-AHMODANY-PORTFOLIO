@@ -268,6 +268,37 @@
   transition: 0.1s ease;
 }
 
+/* Custom cursor trail styles */
+.cursor-trail-particle {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  border-radius: 50%;
+  will-change: transform, opacity;
+}
+
+.cursor-trail-chain {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9998;
+  will-change: transform, opacity;
+}
+
+/* Hide cursor trail on touch devices */
+@media (pointer: coarse) {
+  .cursor-trail-particle,
+  .cursor-trail-chain {
+    display: none !important;
+  }
+}
+
+/* Enhanced cursor trail for high-end devices */
+@media (min-width: 1024px) and (prefers-reduced-motion: no-preference) {
+  .cursor-trail-enhanced {
+    filter: blur(0.5px);
+  }
+}
+
 /* Typing cursor */
 .typed-cursor {
   display: inline-block;
